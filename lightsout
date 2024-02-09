@@ -1,0 +1,7 @@
+#/bin/bash
+ansible spare -a "sudo halt"
+ansible vpn -a "sudo halt"
+ansible dns -a "sudo halt"
+ansible automation -a "sudo halt"
+ansible carweb -a "sudo halt"
+ansible airplay -a "sudo halt"

@@ -1,0 +1,25 @@
+#! /bin/bash
+
+
+HOSTS=$( cat /etc/ansible/hosts | grep -v '\[' | grep -v '\#' | grep -v '^$' )
+
+for host in $HOSTS; 
+
+do
+
+freemem=$(ssh "$host" 'free -m | grep Mem | cut -b 37-43'  | tr -d ' ')
+temp=$(ssh "$host" '/opt/vc/bin/vcgencmd measure_temp | grep temp | cut -b 6-9' | tr -d "'")
+echo "pis.$host.freememory $freemem `date +%s`"
+echo "pis.$host.temp $temp `date +%s`"
+echo "pis.$host.freememory $freemem `date +%s`" | nc -q0 mintimperial-11 2003
+echo "pis.$host.temp $temp `date +%s`" | nc -q0 mintimperial-11 2003
+
+done
+
+freemem=$(free -m | grep Mem | cut -b 37-43 | tr -d ' ')
+temp=$(/opt/vc/bin/vcgencmd measure_temp | grep temp | cut -b 6-9 | tr -d "'")
+
+echo "pis.mintimperial-00.freememory $freemem `date +%s`"
+echo "pis.mintimperial-00.temp $temp `date +%s`"
+echo "pis.mintimperial-00.freememory $freemem `date +%s`" | nc -q0 mintimperial-11 2003
+echo "pis.mintimperial-00.temp $temp `date +%s`" | nc -q0 mintimperial-11 2003

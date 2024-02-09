@@ -1,0 +1,20 @@
+#! /bin/bash
+
+HOSTS=$( cat /etc/ansible/hosts | grep -v '\[' | grep -v '\#' | grep -v '^$' )
+
+for fn in $HOSTS; 
+do echo "====================================="
+echo $fn
+echo "====================================="
+ssh "$fn" 'yes | ./autoupdate';
+echo ''
+sleep 10
+done
+sleep 10
+
+echo "====================================="
+echo mintimperial-00
+echo "====================================="
+yes | /home/pi/autoupdate
+
+

@@ -1,0 +1,1 @@
+ansible vpn -a "last" | grep "still logged in"

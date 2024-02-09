@@ -1,0 +1,8 @@
+#! /bin/bash
+
+HOSTS=$( cat /etc/ansible/hosts | grep -v '\[' | grep -v '\#' | grep -v '^$' )
+
+for fn in $HOSTS; 
+	do ssh "$fn" 'sudo apt-get dist-upgrade';
+done
+

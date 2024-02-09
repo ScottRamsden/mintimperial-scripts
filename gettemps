@@ -1,0 +1,1 @@
+ansible all -a "/opt/vc/bin/vcgencmd measure_temp" | grep temp
