@@ -59,6 +59,17 @@ while true; do
 	else
 		echo -e "\e[91mOffline\e[39m"
 	fi
+ 	
+	echo "- google"
+	
+	if ping -c 1 google.co.uk &> /dev/null
+	then
+		echo -e "\e[92m"
+		ping -c1 google.co.uk -4 | grep 'time=' | cut -d ' ' -f 7
+		echo -e "\e[39m"
+	else
+		echo -e "\e[91mOffline\e[39m"
+	fi
 	
 	sleep 30
 done
